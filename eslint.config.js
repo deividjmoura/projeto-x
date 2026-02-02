@@ -1,3 +1,9 @@
+/*
+  File: eslint.config.js
+  - Cabeçalho automático: descreve o propósito do arquivo
+*/
+
+
 import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'

@@ -1,3 +1,10 @@
+/*
+  App.css
+  - Estilos específicos para o componente `App.jsx`.
+  - Contém regras de layout central, estilo de logos, animações e pequenos utilitários.
+*/
+
+/* Contêiner raiz da aplicação, centraliza o conteúdo e define largura máxima */
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -5,6 +12,7 @@
   text-align: center;
 }
 
+/* Logos: tamanho, espaçamento e efeitos visuais (hover/sombra) */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -12,12 +20,15 @@
   transition: filter 300ms;
 }
 .logo:hover {
+  /* Sombra ao passar o mouse para destacar o logo */
   filter: drop-shadow(0 0 2em #646cffaa);
 }
 .logo.react:hover {
+  /* Cor de sombra específica para o logo do React */
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+/* Animação de rotação para o segundo logo (quando movimento não é reduzido) */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -27,16 +38,19 @@
   }
 }
 
+/* Aplica animação apenas se o usuário não prefere reduzir movimento */
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
 }
 
+/* Cartão de conteúdo usado para o demo */
 .card {
   padding: 2em;
 }
 
+/* Texto auxiliar com cor neutra */
 .read-the-docs {
   color: #888;
 }

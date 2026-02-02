@@ -1,50 +1,54 @@
-import { useState } from 'react'
-import { Box, Flex, Heading, Spacer, Button, Container } from '@chakra-ui/react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+/*
+  App.jsx
+  - Componente principal da aplicação React.
+  - Gerencia roteamento entre telas de login/cadastro e página inicial.
+  - Verifica se há token salvo no localStorage ao iniciar.
+*/
+import { useState, useEffect } from 'react'
+import LoginRegister from './LoginRegister'
+import Home from './Home'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [user, setUser] = useState(null)
 
-  return (
-    <>
-      <Box as="header" bg="teal.500" color="white" px={6} py={4}>
-        <Container maxW="container.xl">
-          <Flex align="center">
-            <Heading size="md">Projeto-X</Heading>
-            <Spacer />
-            <Button colorScheme="teal" variant="solid" size="sm">
-              Acessar
-            </Button>
-          </Flex>
-        </Container>
-      </Box>
+  // Verifica se há token e usuário salvos ao iniciar
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    const savedUser = localStorage.getItem('user')
+    if (token && savedUser) {
+      try {
+        setUser(JSON.parse(savedUser))
+        setIsLoggedIn(true)
+      } catch (err) {
+        console.error('Erro ao carregar usuário salvo:', err)
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+      }
+    }
+  }, [])
 
-      <Container maxW="container.xl" mt={8}>
-        <div>
-          <a href="https://vite.dev" target="_blank">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-          </a>
-          <a href="https://react.dev" target="_blank">
-            <img src={reactLogo} className="logo react" alt="React logo" />
-          </a>
-        </div>
-        <h1>Vite + React</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test HMR
-          </p>
-        </div>
-        <p className="read-the-docs">
-          Click on the Vite and React logos to learn more
-        </p>
-      </Container>
-    </>
+  // Função chamada quando login/cadastro é bem-sucedido
+  function handleLoginSuccess(userData, token) {
+    localStorage.setItem('token', token)
+    localStorage.setItem('user', JSON.stringify(userData))
+    setUser(userData)
+    setIsLoggedIn(true)
+  }
+
+  // Função para fazer logout
+  function handleLogout() {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    setUser(null)
+    setIsLoggedIn(false)
+  }
+
+  // Renderiza Home se autenticado, senão renderiza Login/Cadastro
+  return isLoggedIn && user ? (
+    <Home user={user} onLogout={handleLogout} />
+  ) : (
+    <LoginRegister onLoginSuccess={handleLoginSuccess} />
   )
 }
-
-export default App

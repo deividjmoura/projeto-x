@@ -1,8 +1,16 @@
+/*
+  index.css
+  - Estilos globais da aplicação.
+  - Define variáveis base, tipografia, temas (modo claro/escuro) e reset simples.
+*/
+
+/* Variáveis e estilos globais básicos */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
+  /* Habilita esquema claro/escuro para navegadores compatíveis */
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -13,6 +21,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Links: estilo e comportamento ao passar o mouse */
 a {
   font-weight: 500;
   color: #646cff;
@@ -22,6 +31,7 @@ a:hover {
   color: #535bf2;
 }
 
+/* Layout base do body: centraliza conteúdo e garante tamanho mínimo */
 body {
   margin: 0;
   display: flex;
@@ -30,11 +40,13 @@ body {
   min-height: 100vh;
 }
 
+/* Títulos grandes usados na página inicial */
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
+/* Estilos padrão para botões usados na UI */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -54,6 +66,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Ajustes para o modo claro: sobrescreve variáveis quando o usuário prefere light */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

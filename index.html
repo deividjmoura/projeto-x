@@ -1,13 +1,28 @@
 <!doctype html>
+<!--
+  File: index.html
+  - Cabeçalho automático: descreve o propósito do arquivo
+-->
+
+
 <html lang="en">
   <head>
+    <!--
+      index.html
+      - Documento HTML principal servido pelo Vite durante o desenvolvimento.
+      - Contém a raiz do app React: o elemento <div id="root"> é onde o bundle monta
+        a árvore de componentes via ReactDOM.createRoot(...).render(...).
+      - O script `src/main.jsx` é carregado como módulo ES e inicia a aplicação.
+    -->
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>projeto-x</title>
+    <title>projeto-xxx</title>
   </head>
   <body>
+    <!-- Ponto de montagem do React: o app renderiza dentro deste elemento -->
     <div id="root"></div>
+    <!-- Entrada da aplicação: carrega o bundle/entrypoint React -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
